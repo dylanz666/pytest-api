@@ -1,0 +1,8 @@
+pytest==8.3.4
+flake8==7.1.1
+requests==2.32.3
+jsonpath==0.82.2
+allure-pytest==2.13.5
+pr-properties==1.8.5
+fire==0.7.0
+pytest-xdist==3.6.1
