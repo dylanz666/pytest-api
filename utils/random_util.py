@@ -15,8 +15,10 @@ class RandomUtil:
 
     @staticmethod
     def get_random_digit(length=5):
-        if type(length) is int and 0 < length < 25:
-            return int(''.join(str(i) for i in random.sample(range(0, 25), length)))
+        if isinstance(length, int) and 0 < length < 25:
+            lower_bound = 10 ** (length - 1)
+            upper_bound = 10 ** length - 1
+            return random.randint(lower_bound, upper_bound)
         raise ValueError("Invalid input!")
 
     @staticmethod
