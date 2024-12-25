@@ -1,5 +1,7 @@
 # pytest-api
 
+pip install -r requirements.txt
+
 python runner.py - run
 
 python runner.py - generate_report
