@@ -1,7 +1,7 @@
 import functools
 import allure
 
-from utils.logger import Logger
+from tools.logger import Logger
 import json as json_tool
 
 

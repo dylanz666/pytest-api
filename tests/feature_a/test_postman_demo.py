@@ -2,8 +2,8 @@ import pytest
 import allure
 from constants.severity import Severity
 from entity.user import User
-from utils.config_util import ConfigUtil
-from utils.http_client import HttpClient
+from tools.config_util import ConfigUtil
+from tools.http_client import HttpClient
 
 
 @allure.feature("Feature: Login")

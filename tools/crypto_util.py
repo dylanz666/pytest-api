@@ -1,7 +1,7 @@
 import base64
 
 
-class CryptoManager:
+class CryptoUtil:
     def __init__(self):
         pass
 
@@ -15,5 +15,5 @@ class CryptoManager:
 
 
 if __name__ == "__main__":
-    assert CryptoManager.base64_encode("dylan") == "ZHlsYW4="
-    assert CryptoManager.base64_decode("ZHlsYW4=") == "dylan"
+    assert CryptoUtil.base64_encode("dylan") == "ZHlsYW4="
+    assert CryptoUtil.base64_decode("ZHlsYW4=") == "dylan"
