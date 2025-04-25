@@ -10,7 +10,7 @@
 pip install -r requirements.txt
 ```
 
-## 3. Run your automation script, like:
+## 3. Use commands like below to run your test cases.
 
 ```commandline
 python runner.py - run
