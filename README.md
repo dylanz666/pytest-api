@@ -40,5 +40,4 @@ python runner.py - run --maxfail=2
 python runner.py - run --failed_first
 
 python runner.py - run --ignore=tests\feature_a\test_postman_demo.py
-
 ```
