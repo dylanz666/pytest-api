@@ -11,10 +11,13 @@ class Logger:
     loggers = defaultdict(logging.getLogger)
 
     @classmethod
-    def initialize(cls):
+    def initialize(cls, input_date_str=None):
         FileUtil.makedirs_if_not_exist(log_path)
-        now = datetime.now()
-        date_str = f"{now.year}-{now.month:02d}-{now.day:02d}"
+        if input_date_str:
+            date_str = input_date_str
+        else:
+            now = datetime.now()
+            date_str = f"{now.year}-{now.month:02d}-{now.day:02d}"
         cls.log_filename = os.path.join(log_path, f"{date_str}.log")
 
         # Check if the corresponding logger already exists
@@ -50,6 +53,10 @@ class Logger:
     def get_logger():
         now = datetime.now()
         date_str = f"{now.year}-{now.month:02d}-{now.day:02d}"
+
+        # considering some testing happened across different days
+        if date_str not in Logger.loggers:
+            Logger.initialize(date_str)
         return Logger.loggers[date_str]
 
     @staticmethod
