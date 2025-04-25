@@ -47,24 +47,36 @@ class Runner(object):
         os.system("allure open")
         return self
 
-    def run(self, fast_fail=False, matcher="", cases="", concurrency=1, mark=""):
+    def collect_cases(self):
+        os.system("pytest --collect-only")
+        return self
+
+    def run(self, keyword="", mark="", case_files="", concurrency=1, fast_fail=False, maxfail=0, last_failed=False,
+            failed_first=False, ignore=""):
         args = ["-v", "-s", '--alluredir', self.results_dir]
-        if fast_fail:
-            args.append("-x")
-        if matcher:
+        if keyword:
             args.append("-k")
-            args.append(matcher)
-        if cases:
-            if cases is tuple:
-                args += cases
-            else:
-                args += cases.split(",")
+            args.append(keyword)
+        if case_files and case_files is tuple:
+            args += case_files
+        elif case_files:
+            args += case_files.split(",")
         if mark:
             args.append("-m")
             args.append(mark)
         if concurrency > 1:
             args.append("-n")
             args.append(str(concurrency))
+        if fast_fail:
+            args.append("-x")
+        if maxfail > 1:
+            args.append(f"--maxfail={str(maxfail)}")
+        if last_failed is True:
+            args.append("--lf")
+        if failed_first is True:
+            args.append("--ff")
+        if ignore:
+            args.append(f"--ignore={str(ignore)}")
         print("pytest", " ".join(args))
         pytest.main(args)
         return self

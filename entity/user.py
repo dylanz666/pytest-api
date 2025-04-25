@@ -7,5 +7,11 @@ class User(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
 
-    def to_dict(self):
-        return self.model_dump()
+    def to_dict(self) -> dict:
+        """Convert the User instance to a dictionary."""
+        return self.dict()
+
+    @classmethod
+    def from_dict(cls, data: dict) -> 'User':
+        """Create a User instance from a dictionary."""
+        return cls(**data)
