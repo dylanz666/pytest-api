@@ -69,7 +69,7 @@ class Runner(object):
             args.append(str(concurrency))
         if fast_fail:
             args.append("-x")
-        if maxfail > 1:
+        if maxfail > 0:
             args.append(f"--maxfail={str(maxfail)}")
         if last_failed is True:
             args.append("--lf")
