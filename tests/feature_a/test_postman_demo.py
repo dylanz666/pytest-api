@@ -9,7 +9,7 @@ from tools.http_client import HttpClient
 @allure.feature("Feature: Login")
 class TestPostmanDemo:
     def setup_class(self):
-        self.http_client = HttpClient(base_url=ConfigUtil.get_base_url())
+        self.http_client = HttpClient()
 
     def teardown_class(self):
         pass

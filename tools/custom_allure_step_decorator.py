@@ -37,8 +37,8 @@ def custom_allure_step(**kw):
                                   attachment_type=allure.attachment_type.JSON)
                 # send json request body
                 if json is not None and json != {}:
-                    Logger().info(f"[Json Request Body]", json_tool.dumps(json, indent=2))
-                    allure.attach(json_tool.dumps(json, indent=2), name="Json Request Body",
+                    Logger().info(f"[JSON Request Body]", json_tool.dumps(json, indent=2))
+                    allure.attach(json_tool.dumps(json, indent=2), name="JSON Request Body",
                                   attachment_type=allure.attachment_type.JSON)
                 # send text request body
                 if (json is None or json == {}) and data is not None and data != "":

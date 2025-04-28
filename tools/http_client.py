@@ -1,12 +1,16 @@
 import requests
 
 from constants.request_method import RequestMethod
+from tools.config_util import ConfigUtil
 from tools.custom_allure_step_decorator import custom_allure_step
 
 
 class HttpClient:
-    def __init__(self, base_url):
-        self.base_url = base_url
+    def __init__(self, base_url=None):
+        if base_url:
+            self.base_url = base_url
+        else:
+            self.base_url = ConfigUtil.get_base_url()
         print("\r")
 
     def get(self, path, params=None, **kwargs):
