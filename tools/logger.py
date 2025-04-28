@@ -28,29 +28,29 @@ class Logger:
         self.__initialized_flag = True
 
     @classmethod
-    def format_and_log_message(cls, level, *message):
-        formatted_message = ' '.join(str(message_item) for message_item in message)
+    def format_and_log_messages(cls, level, *messages):
+        formatted_message = ' '.join(str(message_item) for message_item in messages)
         logger.log(level, formatted_message)
 
     @classmethod
-    def info(cls, *message) -> None:
-        cls.format_and_log_message("INFO", *message)
+    def info(cls, *messages) -> None:
+        cls.format_and_log_messages("INFO", *messages)
 
     @classmethod
-    def warning(cls, *message) -> None:
-        cls.format_and_log_message("WARNING", *message)
+    def warning(cls, *messages) -> None:
+        cls.format_and_log_messages("WARNING", *messages)
 
     @classmethod
-    def critical(cls, *message) -> None:
-        cls.format_and_log_message("CRITICAL", *message)
+    def critical(cls, *messages) -> None:
+        cls.format_and_log_messages("CRITICAL", *messages)
 
     @classmethod
-    def error(cls, *message) -> None:
-        cls.format_and_log_message("ERROR", *message)
+    def error(cls, *messages) -> None:
+        cls.format_and_log_messages("ERROR", *messages)
 
     @classmethod
-    def debug(cls, *message) -> None:
-        cls.format_and_log_message("DEBUG", *message)
+    def debug(cls, *messages) -> None:
+        cls.format_and_log_messages("DEBUG", *messages)
 
 
 if __name__ == "__main__":
