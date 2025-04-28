@@ -6,3 +6,4 @@ allure-pytest==2.13.5
 pr-properties==1.8.5
 fire==0.7.0
 pytest-xdist==3.6.1
+loguru==0.7.3
