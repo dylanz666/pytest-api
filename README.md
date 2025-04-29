@@ -16,7 +16,7 @@ npm install -g allure
 pip install -r requirements.txt
 ```
 
-## 3. Use commands like below to run your test cases.
+## 4. Use commands like below to run your test cases.
 
 ```commandline
 python runner.py - run
