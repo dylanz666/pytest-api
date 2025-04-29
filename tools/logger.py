@@ -21,9 +21,9 @@ class Logger:
         logger.remove()
         log_format = "[{time:YYYY-MM-DD HH:mm:ss.SSS}] [{level}] {message}"
         log_file = os.path.join(log_path, f"{date_str}.log")
-        # Save to file
+        # Save log to file
         logger.add(log_file, format=log_format, level="DEBUG", rotation="1 day", encoding="utf-8")
-        # Log to console
+        # Log log to console
         logger.add(sys.stdout, format=log_format, level="DEBUG")
 
     @classmethod
