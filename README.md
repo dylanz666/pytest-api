@@ -16,7 +16,7 @@ npm install -g allure
 pip install -r requirements.txt
 ```
 
-## 4. Install git commit hook
+## 4. Install git commit hook.
 
 ```commandline
 pre-commit install
