@@ -46,4 +46,6 @@ python runner.py - run --maxfail=2
 python runner.py - run --failed_first=True
 
 python runner.py - run --ignore=tests\feature_a\test_postman_demo.py
+
+python runner.py - run --keyword=test_delete --mark=sanity - generate_report - open_report
 ```
