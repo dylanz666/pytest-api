@@ -9,7 +9,6 @@ class Runner(object):
         self.results_dir = "allure-results"
         self.report_dir = "allure-report"
         self.environment_file = "environment.properties"
-        pass
 
     def __str__(self):
         return ""
