@@ -16,7 +16,13 @@ npm install -g allure
 pip install -r requirements.txt
 ```
 
-## 4. Use commands like below to run your test cases.
+## 4. Install git commit hook
+
+```commandline
+pre-commit install
+```
+
+## 5. Use commands like below to run your test cases.
 
 ```commandline
 python runner.py - run
