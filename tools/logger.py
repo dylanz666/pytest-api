@@ -1,35 +1,34 @@
 import os
+import sys
+
 from loguru import logger
 from time import strftime
 
-log_path = os.path.join(os.getcwd(), 'logs')
+log_path = os.path.join(os.getcwd(), "logs")
 
 
 class Logger:
     __instance = None
-    __initialized_flag = False
 
     def __new__(cls, *args, **kwargs):
         if not cls.__instance:
             cls.__instance = super().__new__(cls)
+            cls.__instance.__init__()
         return cls.__instance
 
     def __init__(self):
-        if self.__initialized_flag:
-            return
         date_str = strftime('%Y-%m-%d')
         logger.remove()
         log_format = "[{time:YYYY-MM-DD HH:mm:ss.SSS}] [{level}] {message}"
-        log_filename = os.path.join(log_path, f"{date_str}.log")
-        # save log message to log file
-        logger.add(log_filename, format=log_format, level="DEBUG", rotation="1 day", encoding="utf-8")
-        # output log to console
-        logger.add(lambda msg: print(msg, end=''), format=log_format, level="DEBUG")
-        self.__initialized_flag = True
+        log_file = os.path.join(log_path, f"{date_str}.log")
+        # Save to file
+        logger.add(log_file, format=log_format, level="DEBUG", rotation="1 day", encoding="utf-8")
+        # Log to console
+        logger.add(sys.stdout, format=log_format, level="DEBUG")
 
     @classmethod
     def format_and_log_messages(cls, level, *messages):
-        formatted_message = ' '.join(str(message_item) for message_item in messages)
+        formatted_message = " ".join(map(str, messages))
         logger.log(level, formatted_message)
 
     @classmethod
