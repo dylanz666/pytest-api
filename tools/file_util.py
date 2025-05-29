@@ -51,11 +51,11 @@ class FileUtil:
     @staticmethod
     def clear(file_path):
         """
-        Clear the content of the file
+        Clear the content of file
         :param file_path: The file to clear content
         :return: None
         """
-        with open(file_path, "w", encoding='utf-8') as f:
+        with open(file_path, "w", encoding='utf-8'):
             pass
 
     @staticmethod
@@ -83,7 +83,12 @@ class FileUtil:
 
     @staticmethod
     def create_file_if_not_exist(file_path):
-        with open(file_path, "a") as file:
+        """
+        Create file when file_path is not exist
+        :param file_path: The file_path that want to create
+        :return: None
+        """
+        with open(file_path, "a"):
             pass
 
     @staticmethod
