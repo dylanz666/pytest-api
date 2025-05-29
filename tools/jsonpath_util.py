@@ -30,6 +30,21 @@ class JSONPathUtil:
             return result[0]
         return result
 
+    def update_value(self, jsonpath_expr: str, value: any):
+        """根据 JSONPath 表达式修改其对应值"""
+        jsonpath_expr = parse(f"$.{jsonpath_expr}")
+        matches = jsonpath_expr.find(self.data)
+        for match in matches:
+            match.context.value[str(match.path)] = value
+
+    def remove(self, jsonpath_expr: str):
+        """根据 JSONPath 表达式删除内容"""
+        jsonpath_expr = parse(f"$.{jsonpath_expr}")
+        matches = jsonpath_expr.find(self.data)
+        for match in matches:
+            parent = match.context.value
+            parent.remove(match.value)
+
 
 # 示例用法
 if __name__ == "__main__":
@@ -39,8 +54,8 @@ if __name__ == "__main__":
             "book": [
                 {"category": "reference", "author": "Nigel Rees", "title": "Sayings of the Century", "price": 8.95},
                 {"category": "fiction", "author": "Evelyn Waugh", "title": "Sword of Honour", "price": 12.99},
-                {"category": "fiction", "author": "Herman Melville", "title": "Moby Dick", "isbn": "0-553-21311-3", "price": 8.99},
-                {"category": "fiction", "author": "J. R. R. Tolkien", "title": "The Lord of the Rings", "isbn": "0-395-19395-8", "price": 22.99}
+                {"category": "fiction", "author": "Herman", "title": "Moby Dick", "isbn": "0-553", "price": 8.99},
+                {"category": "fiction", "author": "Tolkien", "title": "The Lord...", "isbn": "0-395", "price": 22.99}
             ],
             "bicycle": {
                 "color": "red",
@@ -53,9 +68,22 @@ if __name__ == "__main__":
     jsonpath_util = JSONPathUtil(json_string)
 
     # 使用 JSONPath 表达式获取书籍的作者
-    authors = jsonpath_util.get_value("$.store.book[*].author")
+    authors = jsonpath_util.get_value("store.book[*].author")
     print("Authors:", authors)
 
     # 获取所有书籍的价格
-    prices = jsonpath_util.get_value("$.store.book[*].price")
+    prices = jsonpath_util.get_value("store.book[*].price")
     print("Prices:", prices)
+
+    # 修改值
+    jsonpath_util.update_value("store.book[*].price", 100)
+    prices = jsonpath_util.get_value("store.book[*].price")
+    print("Prices:", prices)
+
+    jsonpath_util.update_value("store.book[0].price", 666)
+    prices = jsonpath_util.get_value("store.book[*].price")
+    print("Prices:", prices)
+
+    # 删除内容
+    jsonpath_util.remove("store.book[0]")
+    print(jsonpath_util.data)
