@@ -9,7 +9,7 @@ class User(BaseModel):
 
     def to_dict(self) -> dict:
         """Convert the User instance to a dictionary."""
-        return self.dict()
+        return self.model_dump()
 
     @classmethod
     def from_dict(cls, data: dict) -> 'User':
