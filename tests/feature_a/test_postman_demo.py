@@ -2,7 +2,6 @@ import pytest
 import allure
 from constants.severity import Severity
 from entity.user import User
-from tools.config_util import ConfigUtil
 from tools.http_client import HttpClient
 
 
