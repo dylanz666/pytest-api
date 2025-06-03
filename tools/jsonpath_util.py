@@ -9,10 +9,11 @@ class JSONPathUtil:
         """初始化 JSONPathReader，加载 JSON 数据"""
         if isinstance(json_data, str):
             self.data: Dict[str, Any] = self.load_json(json_data)
-        elif isinstance(json_data, dict):
+            return
+        if isinstance(json_data, dict):
             self.data: Dict[str, Any] = json_data
-        else:
-            raise ValueError("json_data must be a JSON string or a dictionary.")
+            return
+        raise ValueError("json_data must be a JSON string or a dictionary.")
 
     @staticmethod
     def load_json(json_data: str) -> Dict[str, Any]:
@@ -22,11 +23,10 @@ class JSONPathUtil:
         except json.JSONDecodeError as e:
             raise ValueError("Invalid JSON data") from e
 
-    @classmethod
-    def save_json(cls, json_data, file_path):
+    def save_json(self, file_path):
         """保存 JSON 数据到指定文件"""
         with open(file_path, 'w') as file:
-            json.dump(json_data, file, indent=2)
+            json.dump(self.data, file, indent=2)
             file.close()
 
     def get_value(self, jsonpath_expr: str) -> Optional[List[Any]]:
