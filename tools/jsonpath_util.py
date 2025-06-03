@@ -1,4 +1,5 @@
 import json
+
 from jsonpath_ng import parse
 from typing import Any, Dict, List, Optional
 
@@ -20,6 +21,13 @@ class JSONPathUtil:
             return json.loads(json_data)
         except json.JSONDecodeError as e:
             raise ValueError("Invalid JSON data") from e
+
+    @classmethod
+    def save_json(cls, json_data, file_path):
+        """保存 JSON 数据到指定文件"""
+        with open(file_path, 'w') as file:
+            json.dump(json_data, file, indent=2)
+            file.close()
 
     def get_value(self, jsonpath_expr: str) -> Optional[List[Any]]:
         """根据 JSONPath 表达式获取值"""
